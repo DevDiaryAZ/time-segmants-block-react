@@ -1,0 +1,26 @@
+// font
+$primary-font: "PT Sans", sans-serif;
+
+// color
+$primary-color: #42567a;
+$background-color: #f4f5f9;
+$border-color: rgba(66, 86, 122, 0.2);
+$border-color-mobile: #C7CDD9;
+$mark-border-color: rgba(48, 62, 88, 0.5);
+$start-year-color: #5D5FEF;
+$end-year-color: #ef5da8;
+$button-arrow-border-color: rgba(66, 86, 122);
+$year-color: #3877ee;
+$white-color: #fff;
+$mobile-pagination-color: rgba(66, 86, 122, 0.4);
+
+// breakpoint
+$breakpoint-mobile: 640px;
+$breakpoint-tablet: 1000px;
+
+:export {
+  primaryColor: $primary-color;
+  whiteColor: $white-color;
+  breakpointMobile: $breakpoint-mobile;
+  breakpointTablet: $breakpoint-tablet;
+}
