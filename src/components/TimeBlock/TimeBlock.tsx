@@ -5,6 +5,7 @@ import { Years } from '../Years/Years';
 import { formatNumber, getStyleNumber } from '../../utils/helpers';
 import { gsap } from 'gsap';
 import * as styleVars from '../../styles/_variables.module.scss';
+import './TimeBlock.scss';
 
 interface Slide {
   year: number;
