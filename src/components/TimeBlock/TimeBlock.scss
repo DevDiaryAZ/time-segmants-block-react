@@ -8,6 +8,10 @@
   font-weight: 400;
   color: vars.$primary-color;
 
+  @media (max-width: vars.$breakpoint-tablet) {
+    height: auto;
+  }
+
   .wrapper {
     position: relative;
     width: 100%;
@@ -35,15 +39,19 @@
       width: calc(100% - 40px);
       margin: auto;
       padding-bottom: 60px;
+      padding-top: 58px;
     }
 
     .title-wrapper {
       position: absolute;
+      max-width: 140px;
       top: 169px;
       padding-left: 80px;
 
       @media (max-width: vars.$breakpoint-tablet) {
+        position: relative;
         padding-left: 0;
+        top: 0;
       }
 
       .h1 {
@@ -53,6 +61,7 @@
         font-weight: 700;
 
         @media (max-width: vars.$breakpoint-tablet) {
+          position: relative;
           font-size: 20px;
           line-height: 24px;
         }
@@ -223,6 +232,7 @@
         margin-top: 57px;
         gap: 25px;
         margin-left: 0;
+        margin-top: 54px;
       }
 
       .years__item {
@@ -271,7 +281,7 @@
       margin-bottom: 58px;
       @media (max-width: vars.$breakpoint-tablet) {
         margin-bottom: 0;
-        margin-top: 75px;
+        margin-top: 77px;
       }
       .count {
         font-size: 14px;
@@ -285,7 +295,7 @@
 
         @media (max-width: vars.$breakpoint-tablet) {
           gap: 10px;
-          margin-top: 10px;
+          margin-top: 8px;
         }
       }
 
