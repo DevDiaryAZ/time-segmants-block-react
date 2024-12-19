@@ -21,6 +21,7 @@ interface SliderProps {
 
 export const Slider: React.FC<SliderProps> = React.memo(({ slides, isMobile, isTablet }) => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperClass | null>(null);
+  const [currentSlides, setCurrentSlides] = useState<Slide[]>(slides);
   const sliderRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -28,20 +29,22 @@ export const Slider: React.FC<SliderProps> = React.memo(({ slides, isMobile, isT
 
     gsap.to(sliderRef.current, {
       opacity: 0,
+      duration: 0.5,
       onComplete: () => {
-        setTimeout(() => {
-          gsap.to(sliderRef.current, {
-            opacity: 1,
-            duration: 0.5,
-          });
-        }, 100);
+        setCurrentSlides(slides);
+        swiperInstance?.slideTo(0); // Возвращаем слайдер на первый слайд
+        swiperInstance?.update(); // Обновляем слайды
+        // слайдер с новыми данными
+        gsap.to(sliderRef.current, {
+          opacity: 1,
+          duration: 0.5,
+        });
       },
     });
   }, [slides]);
 
   useEffect(() => {
     if (swiperInstance) {
-      swiperInstance.slideTo(0);
       swiperInstance.update();
     }
   }, [swiperInstance, isMobile, isTablet]);
@@ -49,7 +52,7 @@ export const Slider: React.FC<SliderProps> = React.memo(({ slides, isMobile, isT
   return (
     <div className="slider-wrapper">
       <div ref={sliderRef} style={{ opacity: 1, transition: 'opacity 0' }}>
-        <div className='slider__border-top'></div>
+        <div className="slider__border-top"></div>
         <Swiper
           slidesPerView={isTablet ? (isMobile ? 1.5 : 3) : 3}
           spaceBetween={isTablet ? 10 : 30}
@@ -64,7 +67,7 @@ export const Slider: React.FC<SliderProps> = React.memo(({ slides, isMobile, isT
           onSwiper={(swiper) => {
             setSwiperInstance(swiper);
           }}>
-          {slides.map((slide, index) => (
+          {currentSlides.map((slide, index) => (
             <SwiperSlide key={`${slide.year}-${index}`}>
               <div className="slide__year">{slide.year}</div>
               <div className="slide__text">{slide.text}</div>
